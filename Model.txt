@@ -27,7 +27,7 @@ public class ModelCB {
 	}
 	
 	
-	public boolean checkIdenticalDigits(String input) throws StringIndexOutOfBoundsException{
+	public boolean checkIdenticalDigits(String input){
 		char c;
 		for (int i=0; i<input.length(); i++) {
 			c=input.charAt(i);
@@ -39,7 +39,7 @@ public class ModelCB {
 	}
 
 	
-	public void compareTwoCombination(String input) throws StringIndexOutOfBoundsException{
+	public void compareTwoCombination(String input){
 		
 		int total=0;
 		int position=0;
