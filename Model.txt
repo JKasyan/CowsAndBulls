@@ -1,0 +1,90 @@
+import java.util.Random;
+
+public class ModelCB {
+	
+	private String combination;
+	private String result;
+	private int id=0;
+    private Random generator=new Random();
+	
+	public String getCombination() {
+		return combination;
+	}
+	
+	
+	public void madeCombination() {
+		String digit;
+		do {
+			digit=String.format("%04d",generator.nextInt(9999));
+		}	while (checkIdenticalDigits(digit)!=true);
+		this.combination=digit;
+	}
+	
+	
+	public boolean checkLengthCombination(String input) {
+		if (input.length()!=4)	return false;
+		else return true;
+	}
+	
+	
+	public boolean checkIdenticalDigits(String input) throws StringIndexOutOfBoundsException{
+		char c;
+		for (int i=0; i<input.length(); i++) {
+			c=input.charAt(i);
+			for (int x=i+1; x<input.length(); x++) {
+				if (c==input.charAt(x)) return false;
+			}
+		}
+		return true;
+	}
+
+	
+	public void compareTwoCombination(String input) throws StringIndexOutOfBoundsException{
+		
+		int total=0;
+		int position=0;
+		char a;
+		
+		for (int i=0; i<4; i++) {
+			char c=input.charAt(i);
+			char r=this.combination.charAt(i);
+			if (c==r)
+				position++;
+		}
+			for (int x=0; x<4; x++) {
+				a=input.charAt(x);
+				for (int k=0; k<4; k++) {
+					if (a==this.combination.charAt(k))
+						total++;
+				}
+				
+			}
+		total-=position;
+		this.result=position+"A"+total+"B";
+		id++;
+	}
+	
+	
+	public String getResult() {
+		return result;
+	}
+
+	public boolean victoryCondition(String result) {
+		if (result.equals("4A0B")) return true;
+		else return false;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public boolean checkDigits(String input) {
+		boolean b = false;
+		for (int i=0; i<input.length(); i++) {
+			char c=input.charAt(i);
+			b=Character.isDigit(c);
+		}
+		return b;
+	}
+
+}
